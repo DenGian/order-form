@@ -44,38 +44,59 @@ $sandwiches = [
 ];
 $totalValue = 0;
 
-function validate()
+function handleForm($sandwiches)
 {
-    // TODO: This function will send a list of invalid fields back
-    return [];
-}
-
-function handleForm()
-{
-    // TODO: form related tasks (step 1)
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
-    $street = $_POST['street'];
-    $streetNumber = $_POST['streetnumber'];
-    $city = $_POST['city'];
-    $zipcode = $_POST['zipcode'];
-    $data = $email . $street . $streetNumber . $city . $zipcode;
-    echo $data;
+    // TODO: form related tasks (step 1)
 
     // Validation (step 2)
     $invalidFields = validate();
     if (!empty($invalidFields)) {
         // TODO: handle errors
+        echo '<div class="alert alert-danger" role="alert">';
+
+        echo '</div>';
     } else {
         // TODO: handle successful submission
+        echo '<div class="alert alert-success" role="alert">';
+        echo 'The order was made successfully!' . '<br>';
+        echo 'confirmation E-mail has been send to: ';
+        echo $email . '<br>';
+        echo 'The address for the order is:' . '<br>';
+        echo getData() . '<br>';
+        echo '</div>';
+        echo getOrder($sandwiches);
     }
 }
 
+function validate()
+{
+    // TODO: This function will send a list of invalid fields back
+    return [];
+}
+function getData (){
+    $street = $_POST['street'];
+    $streetNumber = $_POST['streetnumber'];
+    $city = $_POST['city'];
+    $zipcode = $_POST['zipcode'];
+    $data = $street . ' ' . $streetNumber . '<br>' . $zipcode . ' ' . $city . '<br>';
+    return $data;
+}
+function getOrder ($products)
+{
+    $order = '';
+    foreach ($_POST['products'] as $value=> $product) {
+        $order .= $products[$value]['name'];
+    }
+    return $order;
+}
+// $food = [$breakfast, $burgers, $sandwiches];
 // TODO: replace this if by an actual check
 $formSubmitted = false;
 if (isset($_POST['submit'])) {
     $formSubmitted = true;
 }
 if ($formSubmitted) {
-    handleForm();
+    handleForm($sandwiches);
 }
 require 'form-view.php';

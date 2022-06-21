@@ -81,8 +81,8 @@
             <?php foreach ($burgers as $i => $burgers ): ?>
                 <label>
                     <?php // <?= is equal to <?php echo ?>
-                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $burgers ['name'] ?> -
-                    &euro; <?= number_format($burgers ['price'], 2) ?></label><br />
+                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $burgers['name'] ?> -
+                    &euro; <?= number_format($burgers['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>
         <fieldset>
