@@ -35,7 +35,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" class="form-control"/>
+                <input type="email" id="email" name="email" class="form-control" value="ian.mondelaers@telent.com"/>
             </div>
             <div></div>
         </div>
@@ -50,17 +50,17 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="1">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control">
+                    <input type="text" id="city" name="city" class="form-control" value="jhsfjh">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="4">
                 </div>
             </div>
         </fieldset>
@@ -81,7 +81,7 @@
             <?php foreach ($burgers as $i => $burgers ): ?>
                 <label>
                     <?php // <?= is equal to <?php echo ?>
-                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $burgers['name'] ?> -
+                    <input type="checkbox" value="1" name="products[<?php echo $i + 4 ?>]"/> <?php echo $burgers['name'] ?> -
                     &euro; <?= number_format($burgers['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>
@@ -91,7 +91,7 @@
             <?php foreach ($sandwiches as $i => $sandwiches): ?>
                 <label>
                     <?php // <?= is equal to <?php echo ?>
-                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $sandwiches['name'] ?> -
+                    <input type="checkbox" value="1" name="products[<?php echo $i + 9?>]"/> <?php echo $sandwiches['name'] ?> -
                     &euro; <?= number_format($sandwiches['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>

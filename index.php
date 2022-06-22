@@ -44,7 +44,7 @@ $sandwiches = [
 ];
 $totalValue = 0;
 
-function handleForm($sandwiches)
+function handleForm($food)
 {
     $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
     // TODO: form related tasks (step 1)
@@ -54,7 +54,7 @@ function handleForm($sandwiches)
     if (!empty($invalidFields)) {
         // TODO: handle errors
         echo '<div class="alert alert-danger" role="alert">';
-
+        echo $error;
         echo '</div>';
     } else {
         // TODO: handle successful submission
@@ -64,16 +64,51 @@ function handleForm($sandwiches)
         echo $email . '<br>';
         echo 'The address for the order is:' . '<br>';
         echo getData() . '<br>';
+        echo 'you ordered the following products:' . '<br>';
+        echo getOrder($food);
         echo '</div>';
-        echo getOrder($sandwiches);
     }
 }
 
 function validate()
 {
     // TODO: This function will send a list of invalid fields back
-    return [];
+    $error = [];
+    $errorEmail = 'Please be sure to write a valid Email';
+    $errorStreet_City = 'Field is required, Please check if field is correctly filled in! Can only include letters!';
+    $errorStreetNumber ='Street number field is required, Please check if field is correctly filled in!';
+    $errorZipCode =   'Zipcode field is required, Please check if field is correctly filled in! Can only include numbers!';
+    $errorProducts = 'You need to choose one of our products!';
+
+    if (empty(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))) {
+        array_push($error,  $errorEmail);
+    }
+    //validate street
+    if (empty($_POST['street'])) {
+        array_push($error, 'street' . $errorStreet_City);
+    }
+    //validate streetnumber
+    if (empty($_POST['streetnumber'])) {
+        array_push($error, $errorStreetNumber);
+    }
+
+    //validate city
+    if (!ctype_alpha($_POST['city'])) {
+        array_push($error, 'city' . $errorStreet_City);
+    }
+    //validate zipcode
+    if (empty($_POST['zipcode'])) {
+        array_push($error, $errorZipCode);
+    } else if (!ctype_digit($_POST['zipcode'])) {
+        array_push($error, $errorZipCode);
+    }
+    //validate products
+    if (empty($_POST['products'])) {
+        array_push($error, $errorProducts);
+    }
+    return $error;
 }
+
 function getData (){
     $street = $_POST['street'];
     $streetNumber = $_POST['streetnumber'];
@@ -85,18 +120,28 @@ function getData (){
 function getOrder ($products)
 {
     $order = '';
-    foreach ($_POST['products'] as $value=> $product) {
-        $order .= $products[$value]['name'];
+    foreach ($_POST['products'] as $key=> $product) {
+        $order .= $products[$key]['name'] . '<br>';
     }
     return $order;
 }
-// $food = [$breakfast, $burgers, $sandwiches];
+
 // TODO: replace this if by an actual check
 $formSubmitted = false;
+$food = [...$breakfast, ...$burgers, ...$sandwiches];
 if (isset($_POST['submit'])) {
     $formSubmitted = true;
 }
 if ($formSubmitted) {
-    handleForm($sandwiches);
+    handleForm($food);
+    // whatIsHappening();
+//}
+//if ($formSubmitted) {
+//    handleForm($burgers);
+//}
+//if ($formSubmitted) {
+//    handleForm($sandwiches);
 }
+//$_SESSION($_POST['street']);
+
 require 'form-view.php';
