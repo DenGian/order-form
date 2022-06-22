@@ -51,6 +51,7 @@ function handleForm($food)
 
     // Validation (step 2)
     $invalidFields = validate();
+    $error = implode('<br>', $invalidFields);
     if (!empty($invalidFields)) {
         // TODO: handle errors
         echo '<div class="alert alert-danger" role="alert">';
@@ -137,6 +138,5 @@ if (isset($_POST['submit'])) {
 if ($formSubmitted) {
     handleForm($food);
 }
-$_SESSION = $_POST;
 
 require 'form-view.php';
