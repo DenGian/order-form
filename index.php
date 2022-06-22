@@ -75,13 +75,13 @@ function validate()
     // TODO: This function will send a list of invalid fields back
     $error = [];
     $errorEmail = 'Please be sure to write a valid Email';
-    $errorStreet_City = 'Field is required, Please check if field is correctly filled in! Can only include letters!';
-    $errorStreetNumber ='Street number field is required, Please check if field is correctly filled in!';
-    $errorZipCode =   'Zipcode field is required, Please check if field is correctly filled in! Can only include numbers!';
+    $errorStreet_City = 'Please check if field is correctly filled in, can only include letters!';
+    $errorStreetNumber = 'Street number field is required, Please check if field is correctly filled in!';
+    $errorZipCode = 'Please check if field is correctly filled in, can only include numbers!';
     $errorProducts = 'You need to choose one of our products!';
 
     if (empty(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))) {
-        array_push($error,  $errorEmail);
+        array_push($error, $errorEmail);
     }
     //validate street
     if (empty($_POST['street'])) {
@@ -109,7 +109,8 @@ function validate()
     return $error;
 }
 
-function getData (){
+function getData()
+{
     $street = $_POST['street'];
     $streetNumber = $_POST['streetnumber'];
     $city = $_POST['city'];
@@ -117,10 +118,11 @@ function getData (){
     $data = $street . ' ' . $streetNumber . '<br>' . $zipcode . ' ' . $city . '<br>';
     return $data;
 }
-function getOrder ($products)
+
+function getOrder($products)
 {
     $order = '';
-    foreach ($_POST['products'] as $key=> $product) {
+    foreach ($_POST['products'] as $key => $product) {
         $order .= $products[$key]['name'] . '<br>';
     }
     return $order;
@@ -134,14 +136,7 @@ if (isset($_POST['submit'])) {
 }
 if ($formSubmitted) {
     handleForm($food);
-    // whatIsHappening();
-//}
-//if ($formSubmitted) {
-//    handleForm($burgers);
-//}
-//if ($formSubmitted) {
-//    handleForm($sandwiches);
 }
-//$_SESSION($_POST['street']);
+$_SESSION = $_POST;
 
 require 'form-view.php';

@@ -35,7 +35,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email" class="form-control" value="ian.mondelaers@telent.com"/>
+                <input type="email" id="email" name="email" class="form-control"/>
             </div>
             <div></div>
         </div>
@@ -50,17 +50,17 @@
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="1">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control" value="jhsfjh">
+                    <input type="text" id="city" name="city" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control" value="4">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control">
                 </div>
             </div>
         </fieldset>
